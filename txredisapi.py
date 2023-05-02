@@ -35,7 +35,6 @@ import string
 import hashlib
 import random
 
-from typing import Optional, Union
 from twisted.internet import defer, ssl
 from twisted.internet import protocol
 from twisted.internet import reactor
@@ -2430,7 +2429,7 @@ def makeShardedConnection(hosts, dbid, poolsize, reconnect, isLazy,
 
 
 def Connection(host="localhost", port=6379, dbid=None, reconnect=True,
-               charset="utf-8", password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+               charset="utf-8", password=None, ssl_context_factory=False,
                connectTimeout=None, replyTimeout=None, convertNumbers=True):
     return makeConnection(host, port, dbid, 1, reconnect, False,
                           charset, password, ssl_context_factory, connectTimeout, replyTimeout,
@@ -2438,7 +2437,7 @@ def Connection(host="localhost", port=6379, dbid=None, reconnect=True,
 
 
 def lazyConnection(host="localhost", port=6379, dbid=None, reconnect=True,
-                   charset="utf-8", password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+                   charset="utf-8", password=None, ssl_context_factory=False,
                    connectTimeout=None, replyTimeout=None, convertNumbers=True):
     return makeConnection(host, port, dbid, 1, reconnect, True,
                           charset, password, ssl_context_factory, connectTimeout, replyTimeout,
@@ -2446,7 +2445,7 @@ def lazyConnection(host="localhost", port=6379, dbid=None, reconnect=True,
 
 
 def ConnectionPool(host="localhost", port=6379, dbid=None,
-                   poolsize=10, reconnect=True, charset="utf-8", password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+                   poolsize=10, reconnect=True, charset="utf-8", password=None, ssl_context_factory=False,
                    connectTimeout=None, replyTimeout=None,
                    convertNumbers=True):
     return makeConnection(host, port, dbid, poolsize, reconnect, False,
@@ -2456,7 +2455,7 @@ def ConnectionPool(host="localhost", port=6379, dbid=None,
 
 def lazyConnectionPool(host="localhost", port=6379, dbid=None,
                        poolsize=10, reconnect=True, charset="utf-8",
-                       password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False, connectTimeout=None, replyTimeout=None,
+                       password=None, ssl_context_factory=False, connectTimeout=None, replyTimeout=None,
                        convertNumbers=True):
     return makeConnection(host, port, dbid, poolsize, reconnect, True,
                           charset, password, ssl_context_factory, connectTimeout, replyTimeout,
@@ -2464,7 +2463,7 @@ def lazyConnectionPool(host="localhost", port=6379, dbid=None,
 
 
 def ShardedConnection(hosts, dbid=None, reconnect=True, charset="utf-8",
-                      password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False, connectTimeout=None, replyTimeout=None,
+                      password=None, ssl_context_factory=False, connectTimeout=None, replyTimeout=None,
                       convertNumbers=True):
     return makeShardedConnection(hosts, dbid, 1, reconnect, False,
                                  charset, password, ssl_context_factory, connectTimeout,
@@ -2472,7 +2471,7 @@ def ShardedConnection(hosts, dbid=None, reconnect=True, charset="utf-8",
 
 
 def lazyShardedConnection(hosts, dbid=None, reconnect=True, charset="utf-8",
-                          password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+                          password=None, ssl_context_factory=False,
                           connectTimeout=None, replyTimeout=None,
                           convertNumbers=True):
     return makeShardedConnection(hosts, dbid, 1, reconnect, True,
@@ -2481,7 +2480,7 @@ def lazyShardedConnection(hosts, dbid=None, reconnect=True, charset="utf-8",
 
 
 def ShardedConnectionPool(hosts, dbid=None, poolsize=10, reconnect=True,
-                          charset="utf-8", password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+                          charset="utf-8", password=None, ssl_context_factory=False,
                           connectTimeout=None, replyTimeout=None,
                           convertNumbers=True):
     return makeShardedConnection(hosts, dbid, poolsize, reconnect, False,
@@ -2490,7 +2489,7 @@ def ShardedConnectionPool(hosts, dbid=None, poolsize=10, reconnect=True,
 
 
 def lazyShardedConnectionPool(hosts, dbid=None, poolsize=10, reconnect=True,
-                              charset="utf-8", password=None, ssl_context_factory: Union[ssl.ClientContextFactory, bool]=False,
+                              charset="utf-8", password=None, ssl_context_factory=False,
                               connectTimeout=None, replyTimeout=None,
                               convertNumbers=True):
     return makeShardedConnection(hosts, dbid, poolsize, reconnect, True,
